@@ -3,12 +3,16 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
+import cloudflare from '@astrojs/cloudflare';
+
 export default defineConfig({
   site: 'https://modh07ltd.co.uk',
   trailingSlash: 'never',
+
   vite: {
     plugins: [tailwindcss()],
   },
+
   integrations: [
     sitemap({
       lastmod: new Date('2026-08-18'),
@@ -21,4 +25,10 @@ export default defineConfig({
       },
     }),
   ],
-});
+
+    adapter: cloudflare({
+      imageService: 'compile',
+      prerenderEnvironment: 'node',
+    }),
+    output: 'static',
+  });

@@ -32,20 +32,26 @@ npm run preview
 - `npm run build` writes a static site to `dist/`
 - `npm run preview` serves that output locally
 
-## Cloudflare Pages deployment
+## Cloudflare deployment
 
-Create a Cloudflare Pages project from this repository.
+This site is a static Astro build. Images are optimized **at build time** so they become files under `/_astro/`, not runtime `/_image` URLs.
+
+That matters on Cloudflare Workers / Pages. The Workers Astro adapter defaults to an on-the-fly `/_image` endpoint, which 404s unless an Images binding is set up. This project sets `imageService: 'compile'` so photographs are already WebP files in the build.
+
+### Cloudflare Pages
 
 | Setting | Value |
 | --- | --- |
 | Framework preset | Astro |
 | Build command | `npm run build` |
-| Output directory | `dist` |
+| Output directory | `dist/client` |
 | Node.js version | `22` |
 
-The repository includes `.nvmrc` so Pages can pick Node 22. You can also set `NODE_VERSION=22` in the Pages environment variables.
+The repository includes `.nvmrc` so Pages can pick Node 22. You can also set `NODE_VERSION=22` in the environment variables.
 
-After the first production deployment, assign the custom domain (see below).
+### Cloudflare Workers
+
+If the project is deployed as a Worker (a `*.workers.dev` URL), use the same build command. After pulling this image fix, **redeploy** so HTML points at `/_astro/*.webp` instead of `/_image?...`.
 
 `public/_headers` adds basic security headers. `public/_redirects` sends `/sitemap.xml` to Astro’s `sitemap-index.xml`.
 
