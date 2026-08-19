@@ -1,0 +1,73 @@
+---
+import { COMPANY, NAV_LINKS, formattedAddress } from '../data/site';
+import Logo from './Logo.astro';
+---
+
+<footer class="bg-forest text-cream">
+  <div class="wrap py-16">
+    <div class="grid gap-12 md:grid-cols-2 lg:grid-cols-3">
+      <div>
+        <Logo onDark />
+        <p class="mt-5 max-w-xs text-sm leading-relaxed text-cream/75">
+          {COMPANY.tagline}
+        </p>
+      </div>
+
+      <nav aria-label="Footer">
+        <p class="text-[0.7rem] font-semibold tracking-[0.2em] text-citrus-soft uppercase">
+          Explore
+        </p>
+        <ul class="mt-4 space-y-2">
+          {
+            NAV_LINKS.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  class="text-sm text-cream/80 transition hover:text-cream"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))
+          }
+          <li>
+            <a href="/privacy" class="text-sm text-cream/80 transition hover:text-cream">
+              Privacy Policy
+            </a>
+          </li>
+          <li>
+            <a href="/terms" class="text-sm text-cream/80 transition hover:text-cream">
+              Terms of Use
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div>
+        <p class="text-[0.7rem] font-semibold tracking-[0.2em] text-citrus-soft uppercase">
+          Company
+        </p>
+        <p class="mt-4 text-sm leading-relaxed text-cream/80">
+          {COMPANY.name}<br />
+          Company No. {COMPANY.number}<br />
+          {formattedAddress()}
+        </p>
+        <p class="mt-4 text-sm leading-relaxed text-cream/80">
+          Owner: {COMPANY.owner}<br />
+          <a href={`mailto:${COMPANY.email}`} class="hover:text-cream">{COMPANY.email}</a><br />
+          <a href={COMPANY.phoneHref} class="hover:text-cream">{COMPANY.phoneDisplay}</a>
+        </p>
+        <p class="mt-4 text-sm text-cream/70">
+          Registered in England and Wales
+        </p>
+      </div>
+    </div>
+
+    <div
+      class="mt-12 flex flex-col gap-2 border-t border-cream/10 pt-6 text-sm text-cream/60 sm:flex-row sm:items-center sm:justify-between"
+    >
+      <p>© 2026 {COMPANY.name}. All rights reserved.</p>
+      <p>Fresh fruit and vegetable wholesale &amp; retail.</p>
+    </div>
+  </div>
+</footer>

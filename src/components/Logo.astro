@@ -1,0 +1,54 @@
+---
+interface Props {
+  class?: string;
+  onDark?: boolean;
+}
+
+const { class: className = '', onDark = false } = Astro.props;
+---
+
+<a
+  href="/#home"
+  class:list={[
+    'group inline-flex items-center gap-2.5 no-underline',
+    className,
+  ]}
+  aria-label="MODH07 LIMITED home"
+>
+  <span
+    class:list={[
+      'flex size-9 shrink-0 items-center justify-center rounded-lg',
+      onDark ? 'bg-cream/10 text-cream' : 'bg-forest text-cream',
+    ]}
+    aria-hidden="true"
+  >
+    <svg viewBox="0 0 24 24" class="size-5" fill="none">
+      <path
+        d="M5.5 17.5c6.2-1.2 10.1-5.8 12-13.2C10 5.8 4.5 11.1 5.5 17.5Z"
+        fill="currentColor"></path>
+      <path
+        d="M7 16.2c2.9-2.6 5.8-5.8 8.2-10.3"
+        stroke={onDark ? '#16352C' : '#F4EFE4'}
+        stroke-width="1.2"
+        stroke-linecap="round"></path>
+    </svg>
+  </span>
+  <span class="flex flex-col leading-none">
+    <span
+      class:list={[
+        'font-heading text-[1.15rem] font-semibold tracking-[0.04em]',
+        onDark ? 'text-cream' : 'text-forest',
+      ]}
+    >
+      MODH07
+    </span>
+    <span
+      class:list={[
+        'mt-1 text-[0.62rem] font-semibold tracking-[0.28em] uppercase',
+        onDark ? 'text-cream/70' : 'text-leaf',
+      ]}
+    >
+      Limited
+    </span>
+  </span>
+</a>

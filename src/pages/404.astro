@@ -1,0 +1,27 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import { COMPANY } from '../data/site';
+---
+
+<Layout
+  title={`Page not found | ${COMPANY.name}`}
+  description="The requested page could not be found."
+  path="/"
+  robots="noindex, follow"
+>
+  <Navbar />
+  <main id="main" class="bg-paper">
+    <div class="wrap py-24 text-center sm:py-32">
+      <p class="eyebrow mx-auto justify-center">404</p>
+      <h1 class="display text-4xl sm:text-5xl">Page not found</h1>
+      <p class="mx-auto mt-6 max-w-md text-ink-soft">
+        That page does not exist. Return to the MODH07 LIMITED homepage to
+        continue.
+      </p>
+      <a href="/" class="btn-primary mt-8">Back to home</a>
+    </div>
+  </main>
+  <Footer />
+</Layout>

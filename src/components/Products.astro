@@ -1,0 +1,196 @@
+---
+import { Image } from 'astro:assets';
+import apples from '../assets/images/apples.jpg';
+import bananas from '../assets/images/bananas.jpg';
+import oranges from '../assets/images/oranges.jpg';
+import grapes from '../assets/images/grapes.jpg';
+import seasonal from '../assets/images/seasonal-fruit.jpg';
+import potatoes from '../assets/images/potatoes.jpg';
+import onions from '../assets/images/onions.jpg';
+import tomatoes from '../assets/images/tomatoes.jpg';
+import carrots from '../assets/images/carrots.jpg';
+import leafy from '../assets/images/leafy.jpg';
+
+const fruits = [
+  {
+    name: 'Apples',
+    image: apples,
+    alt: 'Close-up of fresh red apples packed together',
+    description: 'A staple fruit category, shown here for visual reference.',
+    featured: true,
+  },
+  {
+    name: 'Bananas',
+    image: bananas,
+    alt: 'A bunch of ripe yellow bananas',
+    description: 'An example of everyday fruit produce.',
+  },
+  {
+    name: 'Oranges',
+    image: oranges,
+    alt: 'Fresh whole oranges with green leaves',
+    description: 'Citrus fruit shown as a category example.',
+  },
+  {
+    name: 'Grapes',
+    image: grapes,
+    alt: 'Clusters of fresh grapes',
+    description: 'An example from the fresh fruit range.',
+  },
+  {
+    name: 'Seasonal fruits',
+    image: seasonal,
+    alt: 'An assortment of colourful seasonal fruits',
+    description: 'Availability may change with the season.',
+  },
+] as const;
+
+const vegetables = [
+  {
+    name: 'Leafy vegetables',
+    image: leafy,
+    alt: 'Fresh leafy green vegetables',
+    description: 'A visual example of leafy produce.',
+    featured: true,
+  },
+  {
+    name: 'Tomatoes',
+    image: tomatoes,
+    alt: 'Ripe red tomatoes on the vine',
+    description: 'An example of everyday vegetable produce.',
+  },
+  {
+    name: 'Potatoes',
+    image: potatoes,
+    alt: 'Fresh potatoes with earth still on the skins',
+    description: 'A staple vegetable category for visual reference.',
+  },
+  {
+    name: 'Onions',
+    image: onions,
+    alt: 'A pile of fresh red onions',
+    description: 'An example from the vegetable range.',
+  },
+  {
+    name: 'Carrots',
+    image: carrots,
+    alt: 'Fresh orange carrots with leafy green tops',
+    description: 'Shown as a category example only.',
+  },
+] as const;
+---
+
+<section
+  id="products"
+  class="border-y border-forest/10 bg-cream py-20 sm:py-28"
+  aria-labelledby="products-heading"
+>
+  <div class="wrap">
+    <div class="reveal max-w-3xl">
+      <p class="eyebrow">Products</p>
+      <h2 id="products-heading" class="display text-3xl sm:text-4xl lg:text-5xl">
+        Our Products
+      </h2>
+      <p class="lede mt-6">
+        We work with a range of fresh fruit and vegetable products. Product
+        availability may vary. The examples below are for visual and category
+        representation only, and are not a confirmed MODH07 product catalogue.
+      </p>
+    </div>
+
+    <div class="mt-14 space-y-16">
+      <div>
+        <h3 class="font-heading text-2xl text-forest">Fresh Fruits</h3>
+        <ul class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {
+            fruits.map((item) => (
+              <li
+                class:list={[
+                  'card reveal group overflow-hidden',
+                  'featured' in item && item.featured
+                    ? 'sm:col-span-2 lg:row-span-2'
+                    : '',
+                ]}
+              >
+                <article>
+                  <div
+                    class:list={[
+                      'overflow-hidden',
+                      'featured' in item && item.featured
+                        ? 'aspect-[4/3] lg:aspect-[4/3]'
+                        : 'aspect-[4/3]',
+                    ]}
+                  >
+                    <Image
+                      src={item.image}
+                      alt={item.alt}
+                      widths={[400, 640, 960]}
+                      sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                      class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
+                      loading="lazy"
+                      quality={75}
+                    />
+                  </div>
+                  <div class="p-5">
+                    <p class="text-[0.65rem] font-semibold tracking-[0.18em] text-leaf uppercase">
+                      Category example
+                    </p>
+                    <h4 class="mt-1 font-heading text-xl text-forest">
+                      {item.name}
+                    </h4>
+                    <p class="mt-2 text-sm leading-relaxed text-ink-soft">
+                      {item.description}
+                    </p>
+                  </div>
+                </article>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="font-heading text-2xl text-forest">Fresh Vegetables</h3>
+        <ul class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {
+            vegetables.map((item) => (
+              <li
+                class:list={[
+                  'card reveal group overflow-hidden',
+                  'featured' in item && item.featured
+                    ? 'sm:col-span-2 lg:row-span-2'
+                    : '',
+                ]}
+              >
+                <article>
+                  <div class="aspect-[4/3] overflow-hidden">
+                    <Image
+                      src={item.image}
+                      alt={item.alt}
+                      widths={[400, 640, 960]}
+                      sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                      class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
+                      loading="lazy"
+                      quality={75}
+                    />
+                  </div>
+                  <div class="p-5">
+                    <p class="text-[0.65rem] font-semibold tracking-[0.18em] text-leaf uppercase">
+                      Category example
+                    </p>
+                    <h4 class="mt-1 font-heading text-xl text-forest">
+                      {item.name}
+                    </h4>
+                    <p class="mt-2 text-sm leading-relaxed text-ink-soft">
+                      {item.description}
+                    </p>
+                  </div>
+                </article>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

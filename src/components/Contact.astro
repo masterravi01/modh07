@@ -1,0 +1,177 @@
+---
+import { COMPANY } from '../data/site';
+
+const enquiryTypes = [
+  'Wholesale',
+  'Retail',
+  'General enquiry',
+] as const;
+---
+
+<section
+  id="contact"
+  class="bg-cream py-20 sm:py-28"
+  aria-labelledby="contact-heading"
+>
+  <div class="wrap grid items-start gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16">
+    <div class="reveal">
+      <p class="eyebrow">Contact</p>
+      <h2 id="contact-heading" class="display text-3xl sm:text-4xl lg:text-5xl">
+        Let's Talk
+      </h2>
+      <p class="lede mt-6">
+        Whether you're looking to discuss wholesale requirements, fresh produce
+        supply or general enquiries, we'd be happy to hear from you.
+      </p>
+
+      <ul class="mt-8 space-y-4 text-ink-soft">
+        <li>
+          <p class="text-xs font-semibold tracking-[0.16em] text-leaf uppercase">
+            Owner
+          </p>
+          <p class="mt-1 text-lg text-forest">{COMPANY.owner}</p>
+        </li>
+        <li>
+          <p class="text-xs font-semibold tracking-[0.16em] text-leaf uppercase">
+            Email
+          </p>
+          <a
+            href={`mailto:${COMPANY.email}`}
+            class="mt-1 inline-block text-lg text-forest underline decoration-citrus/70 underline-offset-4 hover:decoration-citrus"
+          >
+            {COMPANY.email}
+          </a>
+        </li>
+        <li>
+          <p class="text-xs font-semibold tracking-[0.16em] text-leaf uppercase">
+            Phone
+          </p>
+          <a
+            href={COMPANY.phoneHref}
+            class="mt-1 inline-block text-lg text-forest underline decoration-citrus/70 underline-offset-4 hover:decoration-citrus"
+          >
+            {COMPANY.phoneDisplay}
+          </a>
+        </li>
+      </ul>
+
+      <a href={`mailto:${COMPANY.email}`} class="btn-primary mt-8">
+        Send an Enquiry
+      </a>
+    </div>
+
+    <div class="reveal card p-6 sm:p-8">
+      <!--
+        TODO: Connect this form to a form backend.
+        Suggested options: Formspree, Getform, Basin, or a Cloudflare Worker
+        that forwards submissions by email.
+        Replace the client-side submit handler below with a fetch() to your
+        endpoint. Do not add a fake API route in this static project.
+      -->
+      <form id="contact-form" class="space-y-5">
+        <div>
+          <label for="name" class="mb-2 block text-sm font-semibold text-forest">
+            Name
+          </label>
+          <input
+            id="name"
+            name="name"
+            type="text"
+            autocomplete="name"
+            required
+            class="w-full rounded-xl border border-forest/15 bg-paper px-4 py-3 text-ink outline-none transition focus:border-leaf"
+          />
+        </div>
+
+        <div>
+          <label for="email" class="mb-2 block text-sm font-semibold text-forest">
+            Email
+          </label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            autocomplete="email"
+            required
+            class="w-full rounded-xl border border-forest/15 bg-paper px-4 py-3 text-ink outline-none transition focus:border-leaf"
+          />
+        </div>
+
+        <div>
+          <label for="phone" class="mb-2 block text-sm font-semibold text-forest">
+            Phone
+          </label>
+          <input
+            id="phone"
+            name="phone"
+            type="tel"
+            autocomplete="tel"
+            class="w-full rounded-xl border border-forest/15 bg-paper px-4 py-3 text-ink outline-none transition focus:border-leaf"
+          />
+        </div>
+
+        <div>
+          <label
+            for="enquiry-type"
+            class="mb-2 block text-sm font-semibold text-forest"
+          >
+            Enquiry Type
+          </label>
+          <select
+            id="enquiry-type"
+            name="enquiryType"
+            required
+            class="w-full appearance-none rounded-xl border border-forest/15 bg-paper px-4 py-3 text-ink outline-none transition focus:border-leaf"
+          >
+            <option value="" disabled selected>Select an option</option>
+            {enquiryTypes.map((type) => <option value={type}>{type}</option>)}
+          </select>
+        </div>
+
+        <div>
+          <label for="message" class="mb-2 block text-sm font-semibold text-forest">
+            Message
+          </label>
+          <textarea
+            id="message"
+            name="message"
+            rows="5"
+            required
+            class="w-full resize-y rounded-xl border border-forest/15 bg-paper px-4 py-3 text-ink outline-none transition focus:border-leaf"
+          ></textarea>
+        </div>
+
+        <button type="submit" class="btn-primary w-full">Submit enquiry</button>
+
+        <p
+          id="form-status"
+          class="text-sm leading-relaxed text-ink-soft"
+          role="status"
+          aria-live="polite"
+        >
+          This form is not connected to a messaging service yet. Submissions are
+          not sent. Please email {COMPANY.email} or call {COMPANY.phoneDisplay}.
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ email: COMPANY.email, phone: COMPANY.phoneDisplay }}>
+  const form = document.getElementById('contact-form');
+  const status = document.getElementById('form-status');
+
+  form?.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    // TODO: Replace this handler with a request to your chosen form service.
+    // Example shape only:
+    // const data = new FormData(form);
+    // await fetch('YOUR_FORM_ENDPOINT', { method: 'POST', body: data });
+
+    if (status) {
+      status.textContent =
+        `This form is not connected yet. No message has been sent. Please email ${email} or call ${phone}.`;
+    }
+  });
+</script>

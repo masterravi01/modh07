@@ -1,0 +1,88 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import { COMPANY } from '../data/site';
+---
+
+<Layout
+  title={`Privacy Policy | ${COMPANY.name}`}
+  description="Privacy information for the MODH07 LIMITED website."
+  path="/privacy"
+>
+  <Navbar />
+  <main id="main" class="bg-paper">
+    <article class="wrap prose-page py-16 sm:py-24">
+      <p class="eyebrow">Legal</p>
+      <h1>Privacy Policy</h1>
+      <p>
+        This page describes how the MODH07 LIMITED website currently handles
+        information. It is written for a basic informational website. It is not
+        a substitute for tailored legal advice.
+      </p>
+      <p>
+        Last updated: 19 August 2026.
+      </p>
+
+      <h2>Who we are</h2>
+      <p>
+        This website is published by {COMPANY.name}, a private limited company
+        registered in England and Wales (Company No. {COMPANY.number}). The
+        registered office is {COMPANY.address.line1}, {COMPANY.address.locality},
+        {COMPANY.address.region}, {COMPANY.address.postcode}.
+      </p>
+
+      <h2>What this website does</h2>
+      <p>
+        This is a static informational website. It does not include user
+        accounts, payment processing, analytics tools, or advertising networks
+        as part of the current build.
+      </p>
+
+      <h2>Contact form</h2>
+      <p>
+        The website includes a contact form for layout and future use. The form
+        is not connected to an email service, database, or API. Completing the
+        form does not transmit or store your details.
+      </p>
+      <p>
+        <!-- TODO: When a form service is connected, document: what data is collected, why it is collected, the legal basis, how long it is kept, who it is shared with, and how to request access or deletion. -->
+        When a form or messaging service is added later, this policy will need
+        to be updated with the actual processing details.
+      </p>
+
+      <h2>Cookies and similar technologies</h2>
+      <p>
+        This website does not set analytics or advertising cookies as part of
+        the current static build. The hosting provider may process technical
+        logs (such as IP address, browser type and requested pages) as part of
+        delivering the site.
+      </p>
+      <p>
+        <!-- TODO: If analytics, chat widgets, or a form provider that sets cookies are added, list those cookies and update this section. -->
+        If cookies or similar technologies are introduced later, this section
+        should be updated before those tools go live.
+      </p>
+
+      <h2>Your rights</h2>
+      <p>
+        If personal data is processed in the future, individuals in the UK may
+        have rights under UK data protection law, including rights of access,
+        correction and deletion, subject to legal limits.
+      </p>
+      <p>
+        For privacy questions, contact {COMPANY.owner} at
+        <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>
+        or write to the registered office address above.
+      </p>
+
+      <h2>Changes</h2>
+      <p>
+        This policy may be updated when the website’s functionality changes,
+        particularly if a contact form service, analytics, or other processing
+        is introduced.
+      </p>
+    </article>
+  </main>
+  <Footer />
+</Layout>

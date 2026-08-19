@@ -1,0 +1,65 @@
+---
+import { Image } from 'astro:assets';
+import { COMPANY } from '../data/site';
+import heroImage from '../assets/images/hero.jpg';
+---
+
+<section
+  id="home"
+  class="relative overflow-hidden bg-forest"
+  aria-labelledby="hero-heading"
+>
+  <div class="grid min-h-[calc(100svh-4.5rem)] lg:grid-cols-2">
+    <div class="relative z-10 flex items-center px-5 py-16 sm:px-8 lg:px-12 xl:px-16">
+      <div class="hero-animate mx-auto max-w-xl lg:mx-0">
+        <p class="mb-5 inline-flex items-center gap-2 rounded-full border border-cream/15 bg-white/5 px-3 py-1 text-[0.7rem] font-semibold tracking-[0.16em] text-cream/80 uppercase">
+          UK Registered Company
+          <span class="text-citrus-soft" aria-hidden="true">·</span>
+          <span class="tracking-widest">No. {COMPANY.number}</span>
+        </p>
+
+        <h1
+          id="hero-heading"
+          class="font-heading text-4xl leading-[1.08] font-medium text-cream sm:text-5xl lg:text-[3.4rem]"
+        >
+          Fresh Produce.<br />
+          Reliable Supply.
+        </h1>
+
+        <p class="mt-6 max-w-lg text-base leading-relaxed text-cream/80 sm:text-lg">
+          MODH07 LIMITED supplies quality fresh fruits and vegetables to
+          businesses and customers across the UK, with a focus on quality,
+          reliability and professional service.
+        </p>
+
+        <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+          <a href="/#contact" class="btn-light">Enquire With Us</a>
+          <a
+            href="/#products"
+            class="btn border border-cream/25 bg-transparent text-cream hover:border-cream/50 hover:bg-white/5"
+          >
+            Explore Our Products
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="relative min-h-[42vh] lg:min-h-full">
+      <Image
+        src={heroImage}
+        alt="A market display of fresh fruits and vegetables including peppers, tomatoes, citrus and leafy produce"
+        widths={[640, 960, 1280, 1600]}
+        sizes="(min-width: 1024px) 50vw, 100vw"
+        class="hero-image-reveal absolute inset-0 h-full w-full object-cover"
+        loading="eager"
+        fetchpriority="high"
+        quality={78}
+      />
+      <div
+        class="absolute inset-0 bg-linear-to-t from-forest via-forest/35 to-forest/10 lg:bg-linear-to-l lg:from-transparent lg:via-forest/20 lg:to-forest/70"
+        aria-hidden="true"
+      >
+      </div>
+    </div>
+  </div>
+</section>

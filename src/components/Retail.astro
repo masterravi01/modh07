@@ -1,0 +1,42 @@
+---
+import { Image } from 'astro:assets';
+import fruitDisplay from '../assets/images/retail.jpg';
+---
+
+<section
+  id="retail"
+  class="bg-paper py-20 sm:py-28"
+  aria-labelledby="retail-heading"
+>
+  <div class="wrap grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+    <div class="reveal order-2 overflow-hidden rounded-3xl lg:order-1">
+      <Image
+        src={fruitDisplay}
+        alt="An arrangement of fresh fruits including citrus, grapes, pineapple and sliced produce"
+        widths={[640, 960, 1280]}
+        sizes="(min-width: 1024px) 50vw, 100vw"
+        class="h-full min-h-[22rem] w-full object-cover"
+        loading="lazy"
+        quality={75}
+      />
+    </div>
+
+    <div class="reveal order-1 lg:order-2">
+      <p class="eyebrow">Retail</p>
+      <h2 id="retail-heading" class="display text-3xl sm:text-4xl lg:text-5xl">
+        Fresh Produce for Everyday Needs
+      </h2>
+      <p class="lede mt-6">
+        Alongside wholesale activity, MODH07 LIMITED is registered for the
+        retail sale of fruit and vegetables in specialised stores. This reflects
+        the company’s listed nature of business, covering both wholesale supply
+        and retail sale of fresh produce.
+      </p>
+      <p class="mt-5 max-w-xl text-base leading-relaxed text-ink-soft">
+        Retail activity sits within the company’s UK registration for specialised
+        fruit and vegetable sales. Details of any particular shop, hours or
+        customer offering are not listed here.
+      </p>
+    </div>
+  </div>
+</section>

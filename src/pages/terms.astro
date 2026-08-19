@@ -1,0 +1,93 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import { COMPANY } from '../data/site';
+---
+
+<Layout
+  title={`Terms of Use | ${COMPANY.name}`}
+  description="Website terms of use for MODH07 LIMITED."
+  path="/terms"
+>
+  <Navbar />
+  <main id="main" class="bg-paper">
+    <article class="wrap prose-page py-16 sm:py-24">
+      <p class="eyebrow">Legal</p>
+      <h1>Terms of Use</h1>
+      <p>
+        These terms are a simple outline for use of this informational website.
+        They are generic and should be reviewed by a qualified adviser before
+        being relied on as a complete legal document.
+      </p>
+      <p>Last updated: 19 August 2026.</p>
+
+      <h2>About this website</h2>
+      <p>
+        This website is operated by {COMPANY.name} (Company No. {COMPANY.number}),
+        registered office {COMPANY.address.line1}, {COMPANY.address.locality},
+        {COMPANY.address.region}, {COMPANY.address.postcode}.
+      </p>
+      <p>
+        The site provides general information about the company and its
+        registered business activities: wholesale of fruit and vegetables, and
+        retail sale of fruit and vegetables in specialised stores.
+      </p>
+
+      <h2>No offer or contract</h2>
+      <p>
+        Content on this website is for general information only. It is not an
+        offer to sell, a price list, a product catalogue, or a commitment to
+        supply. Product examples are illustrative. Availability may vary.
+      </p>
+      <!-- TODO: Legal review — add any sales terms, credit terms, or supply conditions if the business later publishes them. -->
+
+      <h2>Accuracy</h2>
+      <p>
+        We aim to keep company information accurate, including registration
+        details shown on the site. Website content may change without notice.
+        We do not make guarantees about uninterrupted access to the site.
+      </p>
+      <!-- TODO: Legal review — consider limitation of liability wording appropriate to UK law. Do not add guarantees. -->
+
+      <h2>Intellectual property</h2>
+      <p>
+        The website design, text and original graphics are used for this
+        company website. Images are used to illustrate fresh produce and may
+        include licensed stock photography. You should not copy the site for
+        commercial reuse without permission.
+      </p>
+
+      <h2>Links</h2>
+      <p>
+        If this website later includes links to other sites, those sites have
+        their own terms and privacy practices.
+      </p>
+
+      <h2>Contact form</h2>
+      <p>
+        The enquiry form is not connected to a messaging service in the current
+        build. Submitting it does not create a contract and does not send a
+        message. Enquiries can be made by email to
+        <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>
+        or by telephone on
+        <a href={COMPANY.phoneHref}>{COMPANY.phoneDisplay}</a>.
+      </p>
+
+      <h2>Governing law</h2>
+      <p>
+        These terms are intended to be read in the context of the laws of
+        England and Wales. This statement is not a complete jurisdiction
+        clause and should be reviewed before use.
+      </p>
+      <!-- TODO: Legal review required before treating these terms as complete or enforceable. -->
+
+      <h2>Changes</h2>
+      <p>
+        We may update these terms as the website changes. The date at the top
+        of this page will be revised when that happens.
+      </p>
+    </article>
+  </main>
+  <Footer />
+</Layout>
